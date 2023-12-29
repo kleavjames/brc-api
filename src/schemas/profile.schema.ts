@@ -30,6 +30,9 @@ export class Profile {
   district: string;
 
   @Prop()
+  districtNumber: number;
+
+  @Prop()
   barangay: string;
 
   @Prop()
@@ -50,19 +53,22 @@ export class Profile {
   @Prop()
   isRegistered: boolean;
 
-  @Prop()
-  precinctId: string;
+  @Prop({ required: false })
+  votingPrecinctId: string;
 
-  @Prop()
+  @Prop({ required: false })
   votingDistrict: string;
 
-  @Prop()
+  @Prop({ required: false })
+  votingDistrictNumber: number;
+
+  @Prop({ required: false })
   votingBarangay: string;
 
-  @Prop()
+  @Prop({ required: false })
   votingCity: string;
 
-  @Prop()
+  @Prop({ required: false })
   votingRegion: string;
 }
 

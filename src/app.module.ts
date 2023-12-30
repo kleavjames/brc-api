@@ -5,7 +5,9 @@ import { ProfilesModule } from './profiles/profiles.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot(),
+    ConfigModule.forRoot({
+      envFilePath: `.env.${process.env.NODE_ENV}`,
+    }),
     MongooseModule.forRoot(process.env.MONGODB_URI),
     ProfilesModule,
   ],

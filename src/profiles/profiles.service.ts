@@ -20,11 +20,23 @@ export class ProfilesService {
     return this.profileModel.find().exec();
   }
 
-  async update(id: string, updateProfileDto: UpdateProfileDto): Promise<void> {
-    await this.profileModel.findByIdAndUpdate(id, updateProfileDto);
+  async update(
+    id: string,
+    updateProfileDto: UpdateProfileDto,
+  ): Promise<Profile> {
+    const updatedProfile = await this.profileModel.findByIdAndUpdate(
+      id,
+      updateProfileDto,
+      {
+        new: true,
+      },
+    );
+
+    return updatedProfile;
   }
 
-  async delete(id: string): Promise<void> {
+  async delete(id: string): Promise<string> {
     await this.profileModel.findByIdAndDelete(id);
+    return id;
   }
 }

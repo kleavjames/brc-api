@@ -19,6 +19,10 @@ export class UpdateProfileDto {
   @IsOptional()
   lastName: string;
 
+  @IsBoolean()
+  @IsOptional()
+  outsideDvo: boolean;
+
   @IsDateString()
   @IsOptional()
   birthdate: string;
@@ -70,6 +74,14 @@ export class UpdateProfileDto {
   @IsBoolean()
   @IsOptional()
   isRegistered: boolean;
+
+  @IsBoolean()
+  @IsOptional()
+  votingOutsideDvo: boolean;
+
+  @IsBoolean()
+  @IsOptional()
+  sameAddress: boolean;
 
   @IsString()
   @IsOptional()

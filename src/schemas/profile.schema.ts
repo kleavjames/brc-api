@@ -15,6 +15,9 @@ export class Profile {
   lastName: string;
 
   @Prop()
+  outsideDvo: boolean;
+
+  @Prop()
   birthdate: Date;
 
   @Prop()
@@ -32,7 +35,7 @@ export class Profile {
   @Prop()
   districtNumber: number;
 
-  @Prop()
+  @Prop({ required: false })
   barangay: string;
 
   @Prop()
@@ -41,17 +44,23 @@ export class Profile {
   @Prop()
   region: string;
 
-  @Prop()
+  @Prop({ required: false })
   networkHead: string;
 
   @Prop()
   leadershipLevel: string;
 
-  @Prop()
-  divineAppointmentDate: Date;
+  @Prop({ required: false })
+  divineAppointmentDate: Date | null;
 
   @Prop()
   isRegistered: boolean;
+
+  @Prop()
+  votingOutsideDvo: boolean;
+
+  @Prop()
+  sameAddress: boolean;
 
   @Prop({ required: false })
   votingPrecinctId: string;

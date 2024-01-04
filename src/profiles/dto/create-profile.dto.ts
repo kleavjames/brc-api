@@ -16,6 +16,9 @@ export class CreateProfileDto {
   @IsString()
   lastName: string;
 
+  @IsBoolean()
+  outsideDvo: boolean;
+
   @IsDateString()
   birthdate: string;
 
@@ -50,7 +53,14 @@ export class CreateProfileDto {
   leadershipLevel: string;
 
   @IsDateString()
+  @IsOptional()
   divineAppointmentDate: string;
+
+  @IsBoolean()
+  votingOutsideDvo: boolean;
+
+  @IsBoolean()
+  sameAddress: boolean;
 
   @IsBoolean()
   isRegistered: boolean;

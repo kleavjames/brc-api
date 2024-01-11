@@ -1,7 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import mongoose, { HydratedDocument } from 'mongoose';
 import { Roles } from 'src/constants/accounts.enum';
-import jwt from 'jsonwebtoken';
 import { Profile } from './profile.schema';
 import * as bcrypt from 'bcrypt';
 
@@ -33,13 +32,6 @@ export class Account {
   // For comparing passwords
   async matchPassword(password: string) {
     return await bcrypt.compare(password, this.password);
-  }
-
-  // sign JWT
-  getSignedJwtToken() {
-    return jwt.sign({ id: AccountSchema.get('_id') }, process.env.JWT_SECRET, {
-      expiresIn: process.env.JWT_EXPIRE,
-    });
   }
 }
 

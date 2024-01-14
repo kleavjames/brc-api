@@ -30,5 +30,6 @@ import * as bcrypt from 'bcrypt';
   ],
   controllers: [AccountsController],
   providers: [AccountsService],
+  exports: [AccountsService],
 })
 export class AccountsModule {}

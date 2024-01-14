@@ -5,7 +5,6 @@ import { Account } from 'src/schemas/account.schema';
 import { Profile } from 'src/schemas/profile.schema';
 import { RegisterAccountDto } from './dto/register-account.dto';
 import { processString } from 'src/utils/strings';
-import { LoginAccountDto } from './dto/login-account.dt';
 
 @Injectable()
 export class AccountsService {
@@ -13,6 +12,13 @@ export class AccountsService {
     @InjectModel(Account.name) private accountModel: Model<Account>,
     @InjectModel(Profile.name) private profileModel: Model<Profile>,
   ) {}
+
+  async findOne(username: string): Promise<Account> {
+    return await this.accountModel
+      .findOne({ username })
+      .select('-password')
+      .exec();
+  }
 
   async register(registerAccountDto: RegisterAccountDto): Promise<any> {
     const { firstName, middleName, lastName } = registerAccountDto;
@@ -52,27 +58,6 @@ export class AccountsService {
       firstName: account.firstName,
       lastName: account.lastName,
       profile: account.profile,
-    };
-  }
-
-  async login(
-    loginAccountDto: LoginAccountDto,
-  ): Promise<{ token: string | null }> {
-    const account = await this.accountModel
-      .findOne({
-        username: loginAccountDto.username,
-      })
-      .select('+password');
-
-    const isMatch = await account.matchPassword(loginAccountDto.password);
-    if (!isMatch) {
-      return {
-        token: null,
-      };
-    }
-
-    return {
-      token: 'asdasdnj2nad',
     };
   }
 }
